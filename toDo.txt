@@ -1,0 +1,11 @@
+Utilizar o Python 3.9.0
+
+Rodar os códigos abaixo no terminal para criar e utilizar o environment:
+
+python -m venv .env
+Set-ExecutionPolicy Unrestricted -Scope Process
+.env\Scripts\Activate.ps1
+
+Instalar todos os pacotes necessários:
+
+pip install pyopengl, matplotlib, pandas, numpy, tqdm, jupyter, seaborn, scikit-learn, openpyxl

@@ -1,3 +1,4 @@
+from audioop import rms
 import pandas as pd
 import numpy as np
 from sklearn.feature_selection import RFE
@@ -46,17 +47,17 @@ def createModels(X_train, y_train, X_test,y_test):
     vetor = [LinearRegression(),
         RandomForestRegressor(random_state=42,n_estimators=40),
         ensemble.GradientBoostingRegressor(),
-        SVR(kernel = 'rbf'),
+        #SVR(kernel = 'rbf'),
         DecisionTreeRegressor(random_state = 0)]
 
     names = ["Linear Regression",
             "Random Forest",
             "Gradient Boosting",
-            "SVR",
+            #"SVR",
             "Decision Tree"]
 
     models = list()
-    i = 1
+    i = 0
 
     for model in vetor:
         # Fit model
@@ -85,3 +86,17 @@ def printModels(models):
     df_Summary = pd.DataFrame({'RMSE': rmse},
                             index = names)
     print(df_Summary)
+
+
+def returnBestModel(models):
+    rmse = []
+    fitedModels = []
+    for model in models:
+        rmse.append(model.rmse)
+        fitedModels.append(model.model)
+    
+    position = np.argmin(rmse)
+    selModel = fitedModels[position]
+    selRMSE = min(rmse)
+    return selModel, selRMSE
+

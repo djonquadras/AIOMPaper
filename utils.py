@@ -1,4 +1,3 @@
-from audioop import rms
 import pandas as pd
 import numpy as np
 from sklearn.feature_selection import RFE
